@@ -1,16 +1,14 @@
+package postgress;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class InsertStudentOracle {
-    private static final String URL = "jdbc:oracle:thin:@localhost:1521/ORCLPDB"; // Service Name
-    // private static final String URL = "jdbc:oracle:thin:@localhost:1521:ORCLPDB"; // SID
-    private static final String USER = "orclpdbuser";
-    private static final String PASSWORD = "isdb62";
+public class InsertStudentPostgress extends Postgress {
 
     public void insertDummyData(String[][] students) {
-        String insertQuery = "INSERT INTO studentjdbc (name, age, email) VALUES (?, ?, ?)";
+        String insertQuery = "INSERT INTO student (name, age, email) VALUES (?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {

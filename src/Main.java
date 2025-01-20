@@ -1,3 +1,5 @@
+import oracle.SelectStudentOracle;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -11,7 +13,11 @@ public class Main {
 //        InsertStudentData postgreSql = new InsertStudentData();
 //        postgreSql.insertDummyData(students);
 
-        InsertStudentOracle oracle = new InsertStudentOracle();
-        oracle.insertDummyData(students);
+//        oracle.InsertStudentOracle oracle = new oracle.InsertStudentOracle();
+//        oracle.insertDummyData(students);
+
+        SelectStudentOracle selectStudentOracle = new SelectStudentOracle();
+        selectStudentOracle.selectAllStudents();
+
     }
 }
