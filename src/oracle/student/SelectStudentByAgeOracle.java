@@ -1,13 +1,18 @@
-package oracle;
+package oracle.student;
 
-import java.sql.*;
+import oracle.OracleConnection;
 
-public class SelectStudentByAgeOracle extends Oracle {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class SelectStudentByAgeOracle {
 
     public void selectStudentsByAge(int minAge, int maxAge) {
         String selectQuery = "SELECT * FROM STUDENTJDBC WHERE age BETWEEN ? AND ?";
 
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection connection = OracleConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
 
             preparedStatement.setInt(1, minAge);

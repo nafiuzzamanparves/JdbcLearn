@@ -1,16 +1,17 @@
-package postgress;
+package postgress.student;
+
+import postgress.PostgressConnection;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class InsertStudentPostgress extends Postgress {
+public class InsertStudentPostgress {
 
     public void insertDummyData(String[][] students) {
         String insertQuery = "INSERT INTO student (name, age, email) VALUES (?, ?, ?)";
 
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection connection = PostgressConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
 
             for (String[] student : students) {

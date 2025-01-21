@@ -1,13 +1,18 @@
-package postgress;
+package postgress.student;
 
-import java.sql.*;
+import postgress.PostgressConnection;
 
-public class SelectStudentByAgePostgress extends Postgress {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class SelectStudentByAgePostgress {
 
     public void selectStudentsByAge(int minAge, int maxAge) {
         String selectQuery = "SELECT * FROM student WHERE age BETWEEN ? AND ?";
 
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection connection = PostgressConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
 
             preparedStatement.setInt(1, minAge);

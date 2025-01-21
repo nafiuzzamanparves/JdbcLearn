@@ -1,13 +1,18 @@
-package oracle;
+package postgress.student;
 
-import java.sql.*;
+import postgress.PostgressConnection;
 
-public class SelectStudentOracle extends Oracle {
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class SelectStudentPostgress {
 
     public void selectAllStudents() {
-        String selectQuery = "SELECT * FROM studentjdbc";
+        String selectQuery = "SELECT * FROM student";
 
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection connection = PostgressConnection.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(selectQuery)) {
 
@@ -19,6 +24,7 @@ public class SelectStudentOracle extends Oracle {
 
                 System.out.println("ID: " + id + ", Name: " + name + ", Age: " + age + ", Email: " + email);
             }
+
         } catch (SQLException e) {
             System.err.println("Error selecting data: " + e.getMessage());
         }

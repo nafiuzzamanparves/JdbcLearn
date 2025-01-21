@@ -1,16 +1,17 @@
-package oracle;
+package oracle.student;
+
+import oracle.OracleConnection;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class InsertStudentOracle extends Oracle {
+public class InsertStudentOracle {
 
     public void insertDummyData(String[][] students) {
         String insertQuery = "INSERT INTO studentjdbc (name, age, email) VALUES (?, ?, ?)";
 
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        try (Connection connection = OracleConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
 
             for (String[] student : students) {
